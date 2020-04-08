@@ -1,6 +1,6 @@
 {
   "name": "vgauge-edited-version",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "edited vgauge version from amroessam/vgauge",
   "main": "dist/VGauge.umd.js",
   "module": "dist/VGauge.esm.js",
