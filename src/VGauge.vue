@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="gauge-title">
+    <div ref="titleGauge" class="gauge-title">
       <span ref="gauge-value" v-if="top" :class="gaugeValueClass"></span>
       <span v-if="top" :class="gaugeValueClass">{{unit}}</span>
     </div>
     <canvas ref="gauge" :height="height" :width="width"></canvas>
-    <div class="gauge-title">
+    <div ref="titleGauge" class="gauge-title">
       <span ref="gauge-value" v-if="!top" :class="gaugeValueClass"></span>
       <span v-if="!top" :class="gaugeValueClass">{{unit}}</span>
     </div>
@@ -20,6 +20,10 @@ export default {
     unit: {
       type: String,
       default: ""
+    },
+    gaugeTitle: {
+      type: Boolean,
+      default: true
     },
     height: {
       type: String,
@@ -110,7 +114,12 @@ export default {
       this.gauge.setMinValue(this.minValue);
       this.gauge.animationSpeed = this.animationSpeed;
       this.gauge.setOptions(this.options);
-      this.gauge.setTextField(this.$refs["gauge-value"], this.decimalPlace);
+      if(this.gaugeTitle == false) {
+        this.$refs.titleGauge = 'none'
+      } else {
+        this.gauge.setTextField(this.$refs["gauge-value"], this.decimalPlace);
+      }
+      this.gauge.gaugeTitle 
       this.gauge.set(this.value);
     }
   }
